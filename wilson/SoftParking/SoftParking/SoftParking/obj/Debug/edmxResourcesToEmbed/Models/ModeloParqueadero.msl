@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="parqueaderoModelStoreContainer" CdmEntityContainer="parqueaderoEntities">
+    <EntitySetMapping Name="caja">
+      <EntityTypeMapping TypeName="parqueaderoModel.caja">
+        <MappingFragment StoreEntitySet="caja">
+          <ScalarProperty Name="nomb_caja" ColumnName="nomb_caja" />
+          <ScalarProperty Name="codi_caja" ColumnName="codi_caja" />
+          <ScalarProperty Name="esta_caja" ColumnName="esta_caja" />
+          <ScalarProperty Name="obse_caja" ColumnName="obse_caja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="parqueaderoModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="codi_clie" ColumnName="codi_clie" />
+          <ScalarProperty Name="iden_clie" ColumnName="iden_clie" />
+          <ScalarProperty Name="nomb_clie" ColumnName="nomb_clie" />
+          <ScalarProperty Name="apel_clie" ColumnName="apel_clie" />
+          <ScalarProperty Name="codi_priv" ColumnName="codi_priv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_pago">
+      <EntityTypeMapping TypeName="parqueaderoModel.detalle_pago">
+        <MappingFragment StoreEntitySet="detalle_pago">
+          <ScalarProperty Name="nume_fact" ColumnName="nume_fact" />
+          <ScalarProperty Name="idet_pago" ColumnName="idet_pago" />
+          <ScalarProperty Name="tota_deta" ColumnName="tota_deta" />
+          <ScalarProperty Name="tiem_tota" ColumnName="tiem_tota" />
+          <ScalarProperty Name="codi_serv" ColumnName="codi_serv" />
+          <ScalarProperty Name="codi_pago" ColumnName="codi_pago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empleado">
+      <EntityTypeMapping TypeName="parqueaderoModel.empleado">
+        <MappingFragment StoreEntitySet="empleado">
+          <ScalarProperty Name="usua_empl" ColumnName="usua_empl" />
+          <ScalarProperty Name="codi_empl" ColumnName="codi_empl" />
+          <ScalarProperty Name="iden_empl" ColumnName="iden_empl" />
+          <ScalarProperty Name="nomb_empl" ColumnName="nomb_empl" />
+          <ScalarProperty Name="apel_empl" ColumnName="apel_empl" />
+          <ScalarProperty Name="dire_empl" ColumnName="dire_empl" />
+          <ScalarProperty Name="cont_empl" ColumnName="cont_empl" />
+          <ScalarProperty Name="carg_empl" ColumnName="carg_empl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pago">
+      <EntityTypeMapping TypeName="parqueaderoModel.pago">
+        <MappingFragment StoreEntitySet="pago">
+          <ScalarProperty Name="nume_fact" ColumnName="nume_fact" />
+          <ScalarProperty Name="codi_pago" ColumnName="codi_pago" />
+          <ScalarProperty Name="tipo_pago" ColumnName="tipo_pago" />
+          <ScalarProperty Name="fech_pago" ColumnName="fech_pago" />
+          <ScalarProperty Name="tota_pago" ColumnName="tota_pago" />
+          <ScalarProperty Name="iva_pago" ColumnName="iva_pago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="privilegio_cliente">
+      <EntityTypeMapping TypeName="parqueaderoModel.privilegio_cliente">
+        <MappingFragment StoreEntitySet="privilegio_cliente">
+          <ScalarProperty Name="codi_priv" ColumnName="codi_priv" />
+          <ScalarProperty Name="tipo_priv" ColumnName="tipo_priv" />
+          <ScalarProperty Name="tari_priv" ColumnName="tari_priv" />
+          <ScalarProperty Name="esta_priv" ColumnName="esta_priv" />
+          <ScalarProperty Name="fech_priv" ColumnName="fech_priv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="servicio">
+      <EntityTypeMapping TypeName="parqueaderoModel.servicio">
+        <MappingFragment StoreEntitySet="servicio">
+          <ScalarProperty Name="fech_sali" ColumnName="fech_sali" />
+          <ScalarProperty Name="codi_serv" ColumnName="codi_serv" />
+          <ScalarProperty Name="fech_serv" ColumnName="fech_serv" />
+          <ScalarProperty Name="hora_entr" ColumnName="hora_entr" />
+          <ScalarProperty Name="hora_sali" ColumnName="hora_sali" />
+          <ScalarProperty Name="codi_empl" ColumnName="codi_empl" />
+          <ScalarProperty Name="plac_vehi" ColumnName="plac_vehi" />
+          <ScalarProperty Name="codi_ubic" ColumnName="codi_ubic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipo_vehiculo">
+      <EntityTypeMapping TypeName="parqueaderoModel.tipo_vehiculo">
+        <MappingFragment StoreEntitySet="tipo_vehiculo">
+          <ScalarProperty Name="tari_vehi" ColumnName="tari_vehi" />
+          <ScalarProperty Name="tipo_vehi" ColumnName="tipo_vehi" />
+          <ScalarProperty Name="nomb_vehi" ColumnName="nomb_vehi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vehiculo">
+      <EntityTypeMapping TypeName="parqueaderoModel.vehiculo">
+        <MappingFragment StoreEntitySet="vehiculo">
+          <ScalarProperty Name="plac_vehi" ColumnName="plac_vehi" />
+          <ScalarProperty Name="colo_vehi" ColumnName="colo_vehi" />
+          <ScalarProperty Name="obse_vehi" ColumnName="obse_vehi" />
+          <ScalarProperty Name="marc_vehi" ColumnName="marc_vehi" />
+          <ScalarProperty Name="tipo_vehi" ColumnName="tipo_vehi" />
+          <ScalarProperty Name="codi_clie" ColumnName="codi_clie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lista_negra">
+      <EntityTypeMapping TypeName="parqueaderoModel.lista_negra">
+        <MappingFragment StoreEntitySet="lista_negra">
+          <ScalarProperty Name="esta_list" ColumnName="esta_list" />
+          <ScalarProperty Name="obse_list" ColumnName="obse_list" />
+          <ScalarProperty Name="plac_vehi" ColumnName="plac_vehi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="turno">
+      <EntityTypeMapping TypeName="parqueaderoModel.turno">
+        <MappingFragment StoreEntitySet="turno">
+          <ScalarProperty Name="desc_turn" ColumnName="desc_turn" />
+          <ScalarProperty Name="mont_inic" ColumnName="mont_inic" />
+          <ScalarProperty Name="fech_fina" ColumnName="fech_fina" />
+          <ScalarProperty Name="fech_inic" ColumnName="fech_inic" />
+          <ScalarProperty Name="codi_caja" ColumnName="codi_caja" />
+          <ScalarProperty Name="codi_empl" ColumnName="codi_empl" />
+          <ScalarProperty Name="codi_turn" ColumnName="codi_turn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ubicacion">
+      <EntityTypeMapping TypeName="parqueaderoModel.ubicacion">
+        <MappingFragment StoreEntitySet="ubicacion">
+          <ScalarProperty Name="dist_ubic" ColumnName="dist_ubic" />
+          <ScalarProperty Name="piso_ubic" ColumnName="piso_ubic" />
+          <ScalarProperty Name="esta_ubic" ColumnName="esta_ubic" />
+          <ScalarProperty Name="tama_ubic" ColumnName="tama_ubic" />
+          <ScalarProperty Name="codi_ubic" ColumnName="codi_ubic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

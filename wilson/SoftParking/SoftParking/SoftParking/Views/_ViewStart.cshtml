@@ -1,0 +1,20 @@
+﻿@using SoftParking.Models;
+@{
+    var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+
+    if (USUARIO != null)
+    {
+        if (USUARIO.Rol == "ADMINISTRADOR")
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else if (USUARIO.Rol == "OPERARIO")
+        {
+            Layout = "~/Views/Shared/_VistaOperario.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Index.cshtml";
+    }
+}

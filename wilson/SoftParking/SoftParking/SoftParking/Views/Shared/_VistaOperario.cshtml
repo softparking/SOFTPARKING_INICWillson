@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        .row.content {
+            height: auto;
+        }
+
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+    </style>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title -  SOFT PARKING</title>
+    @using SoftParking.Models;
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery-3.0.0-beta1.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.slides.min.js" type="text/javascript"></script>    
+    <link rel="stylesheet" href="~/Content/javascript/NavegacionLateral.css">
+    <link rel="stylesheet" href="~/Content/javascript/NavegacionSuperior.css">
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/javascript/Principal.js"></script>
+    <!-- inicio de sesion -->
+    @{
+        var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+    }
+
+</head>
+<body cargo="@USUARIO.Rol">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-right">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-btn"><img src="~/Imagenes/softparkingSmall.png" alt="logo" width="45"/></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+                <ul class="nav navbar-nav navbar-header">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("NuestraEmpresa", "NuestraEmpresa", "Home")</li>
+                    <li>@Html.ActionLink("Politicas", "Politicas", "Home")</li>
+                    <li>@Html.ActionLink("Nuestra Historia", "Historia", "Home")</li>
+                    <li>@Html.ActionLink("Contactenos", "Contactenos", "Home")</li>
+                    <li><a> @USUARIO.Usuario</a></li>
+                    <li><a href="@Url.Action("logout","Logeo")"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- columna izquierda  incluir barra de navegacion lateral -->
+    <div class="row content">
+        <div class="col-sm-2 ">
+            <div class="container-fluid">
+                <nav class="navbar navbar-inverse sidebar navbar-fixed-top" role="navigation">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse ">
+                            <!-- Brand and toggle get grouped for better mobile display  cabecera -->
+                            <div class="navbar-header">
+                                <a class="navbar-brand"></a>
+                            </div>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"></button>
+                            <ul class="nav navbar-nav" id="myNavbar">
+                                <li class="active"><a href="@Url.Action("Index", "Home")">Inicio<span style=" font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                                <li><a href="@Url.Action("Index", "empleado")">USUARIOS OPERARIO<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+                                <li><a href="#">TURNO<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                                <li><a href="#">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                                <li><a href="#">Profile<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+                                <li><a href="#">Messages<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- fin de la barra de navegacion lateral  -->
+            </div>
+        </div>
+
+        <!-- columna central para agregar el contenido de la pagina  -->
+        <div class="col-sm-8 text-left">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- columna final derecha 2 botones grandes   -->
+        <div class="col-sm-2  ">
+            <div class="container-fluid">
+                <div class="well">
+                    <p>la hora es </p>
+
+                    <p>@DateTime.Now.ToLocalTime()</p>
+                </div>
+
+                <div class="well">
+                    <p>ADS</p>
+                </div>
+            </div>
+
+            <hr>
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center   ">
+        <p>Footer Text</p>
+    </footer>
+
+
+</body>
+</html>

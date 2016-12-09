@@ -1,0 +1,72 @@
+﻿@model SoftParking.Models.servicio
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fech_serv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fech_serv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hora_entr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hora_entr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hora_sali)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hora_sali)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empleado.nomb_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empleado.nomb_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vehiculo.colo_vehi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehiculo.colo_vehi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ubicacion.tama_ubic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ubicacion.tama_ubic)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

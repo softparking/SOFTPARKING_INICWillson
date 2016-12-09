@@ -1,0 +1,98 @@
+﻿@model SoftParking.Models.empleado
+
+@{
+  ViewBag.Title = "Crear Empleado";
+
+}
+
+@{
+  List<SelectListItem> Opciones = new List<SelectListItem>();
+  Opciones.Add(new SelectListItem
+  {
+    Text = "OPERARIO",
+    Value = "OPERARIO"
+  });
+  Opciones.Add(new SelectListItem
+  {
+    Text = "ADMINISTRADOR",
+    Value = "ADMINISTRADOR",
+  });
+
+}
+
+<h2>Crear Empleado</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+      @Html.LabelFor(model => model.iden_empl, "IDENTIFICACION", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.iden_empl, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.iden_empl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.nomb_empl, "NOMBRE", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.nomb_empl, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.nomb_empl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.apel_empl, "APELLIDO", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.apel_empl, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.apel_empl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.dire_empl, "DIRECCION", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.dire_empl, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.dire_empl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.usua_empl, "USUARIO", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.usua_empl, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.usua_empl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.cont_empl, "CONTRASEÑA", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.cont_empl, new { htmlAttributes = new { @class = "form-control", type="password"} })
+        @Html.ValidationMessageFor(model => model.cont_empl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.carg_empl, "CARGO", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.DropDownListFor(model => model.carg_empl, Opciones, "-Seleccione-", htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.carg_empl, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Crear" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink("Volver", "Index")
+</div>

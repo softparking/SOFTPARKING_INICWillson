@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SoftParking.Models.servicio>
+
+@{
+    ViewBag.Title = "Index";
+     
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("ASIGNAR SERVICIO", "Create")
+</p>
+<div class="container-fluid">
+    <table class="table table-bordered" align="right" cellspacing="1" cellpadding="1" style="font-size:70%">
+        <tr>
+            <th>
+                FECHA SERVICIO
+            </th>
+            <th>
+                HORA ENTRADA
+            </th>
+            <th>
+                FECHA SALIDA
+            </th>
+            <th>
+                HORA SALIDA
+            </th>
+            <th>
+                ASIGNATARIO
+            </th>
+            <th>
+                PLACAS VEHICULO
+            </th>
+            <th>
+                UBICACION
+            </th>
+            
+
+        </tr>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.fech_serv.Day)/
+                    @Html.DisplayFor(modelItem => item.fech_serv.Month)/
+                    @Html.DisplayFor(modelItem => item.fech_serv.Year)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.hora_entr)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.fech_sali)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.hora_sali)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.empleado.nomb_empl)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.plac_vehi)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ubicacion.codi_ubic)
+                    @Html.DisplayFor(modelItem => item.ubicacion.dist_ubic)
+                </td>             
+            </tr>
+        }
+
+    </table>
+</div>

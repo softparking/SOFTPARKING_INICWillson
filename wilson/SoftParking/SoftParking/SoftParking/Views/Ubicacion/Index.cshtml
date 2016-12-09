@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SoftParking.Models.ubicacion>
+@using SoftParking.Models;
+@{
+  ViewBag.Title = "Ubicaciones";
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+@if (USUARIO != null)
+{
+  <h2>Ubicaciones</h2>  
+  <table class="table  table-responsive table-bordered table-striped table-hover">
+    <tr>
+      <th>TAMAÑO</th>
+      <th>ESTADO</th>
+      <th>PISO</th>
+      <th>DISTINTIVO</th>
+      <th colspan="2">ACCIONES</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.tama_ubic)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.esta_ubic)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.piso_ubic)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.dist_ubic)
+        </td>
+        <td align="center">
+          <button type="button" class="btn btn-danger" onclick="ConfEliminaUbic('@item.codi_ubic');">
+            Eliminar
+            <span class="glyphicon glyphicon-erase"></span>
+          </button>
+        </td>
+        <td align="center">
+          <a class="btn btn-warning" href="@Url.Action("Edit","Ubicacion", new { id = item.codi_ubic})">
+            Editar
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>
+        </td>
+      </tr>
+    }
+  </table>
+  <div class="container-fluid col-md-12" align="center">
+    <a class="btn btn-success" href="@Url.Action("Create", "Ubicacion")">
+      Crear Ubicaciones
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+}
+else
+{
+  <br /><br /><br />
+  <h1>PAGINA NO DISPONIBLE </h1>
+  <a class="btn btn-danger" href="@Url.Action("Login","Logeo")">
+    Volver
+    <span class="glyphicon glyphicon-backward"></span>
+  </a>
+}

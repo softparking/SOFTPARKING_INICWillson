@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SoftParking.Models.cliente>
+@using SoftParking.Models;
+@{
+  ViewBag.Title = "Clientes";
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+@if (USUARIO != null)
+{
+  <h2>Clientes</h2>
+  <table class="table  table-responsive table-bordered table-striped table-hover">
+    <tr>
+      <th>IDENTIFICACION</th>
+      <th>NOMBRE</th>
+      <th>APELLIDO</th>
+      <th>PRIVILEGIO</th>
+      <th colspan="2">ACCIONES</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.iden_clie)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.nomb_clie)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.apel_clie)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.privilegio_cliente.tipo_priv)
+        </td>
+        <td align="center">
+          <button type="button" class="btn btn-danger" onclick="ConfElimCliente('@item.codi_clie');">
+            Eliminar
+            <span class="glyphicon glyphicon-erase"></span>
+          </button>
+        </td>
+        <td align="center">
+          <a class="btn btn-warning" href="@Url.Action("Edit","Clientes", new { id = item.codi_clie})">
+            Editar
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>
+        </td>
+      </tr>
+    }
+  </table>
+  <div class="container-fluid col-md-12" align="center">
+    <a class="btn btn-success" href="@Url.Action("Create","Clientes")">
+      Crear Cliente
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+}
+else
+{
+  <br /><br /><br />
+  <h1>PAGINA NO DISPONIBLE </h1>
+  <a class="btn btn-danger" href="@Url.Action("Login","Logeo")">
+    Volver
+    <span class="glyphicon glyphicon-backward"></span>
+  </a>
+}

@@ -1,0 +1,40 @@
+﻿@model SoftParking.Models.tipo_vehiculo
+
+@{
+  ViewBag.Title = "Crear Tipo Vehiculo";
+}
+
+<h2>Crear Tipo Vehiculo</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+      @Html.LabelFor(model => model.nomb_vehi, "DESCRIPCION", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.nomb_vehi, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.nomb_vehi, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.tari_vehi, "TARIFA", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.tari_vehi, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.tari_vehi, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Crear" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink("Volver", "Index")
+</div>

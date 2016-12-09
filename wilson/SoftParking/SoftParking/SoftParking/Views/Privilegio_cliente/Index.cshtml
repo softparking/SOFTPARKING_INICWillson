@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SoftParking.Models.privilegio_cliente>
+@using SoftParking.Models;
+@{
+  ViewBag.Title = "Privilegios";
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+@if (USUARIO != null)
+{
+  <h2>Privilegios</h2>
+  <table class="table  table-responsive table-bordered table-striped table-hover">
+    <tr>
+      <th>TIPO</th>
+      <th>TARIFA</th>
+      <th>ESTADO</th>
+      <th>FECHA</th>
+      <th colspan="2">ACCIONES</th>      
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.tipo_priv)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.tari_priv)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.esta_priv)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.fech_priv)
+        </td>
+        <td align="center">
+          <button type="button" class="btn btn-danger" onclick="ConfEliminaPriv('@item.codi_priv');">
+            Eliminar
+            <span class="glyphicon glyphicon-erase"></span>
+          </button>
+        </td>
+        <td align="center">
+          <a class="btn btn-warning" href="@Url.Action("Edit","Privilegio_cliente", new { id = item.codi_priv})">
+            Editar
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>
+        </td>       
+      </tr>
+    }
+  </table>
+  <div class="container-fluid col-md-12" align="center">
+    <a class="btn btn-success" href="@Url.Action("Create","Privilegio_cliente")">
+      Crear Privilegio
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+}
+else
+{
+  <br /><br /><br />
+  <h1>PAGINA NO DISPONIBLE </h1>
+  <a class="btn btn-danger" href="@Url.Action("Login","Logeo")">
+    Volver
+    <span class="glyphicon glyphicon-backward"></span>
+  </a>
+}

@@ -1,0 +1,59 @@
+﻿@model SoftParking.Models.caja
+
+@{
+  ViewBag.Title = "Editar Cajas";
+}
+
+<h2>Editar Caja</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.codi_caja)
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.nomb_caja, "NOMBRE", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.nomb_caja, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.nomb_caja, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.esta_caja, "ESTADO", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">        
+        @{
+          List<SelectListItem> Opciones = new List<SelectListItem>();
+
+          Opciones.Add(new SelectListItem { Text = "ACTIVA", Value = "ACT" });
+
+          Opciones.Add(new SelectListItem { Text = "INACTIVA", Value = "INA", });
+        }
+        @Html.DropDownListFor(model => model.esta_caja, Opciones, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.esta_caja, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.obse_caja, "OBSERVACION", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.obse_caja, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.obse_caja, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Modificar" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+          }
+
+<div>
+  @Html.ActionLink("Volver", "Index")
+</div>

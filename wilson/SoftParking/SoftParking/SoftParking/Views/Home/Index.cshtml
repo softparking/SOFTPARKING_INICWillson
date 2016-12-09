@@ -1,0 +1,44 @@
+﻿<div>
+  @{
+  ViewBag.Title = "Home Page";
+  }
+  <script>
+  $(document).ready(function () {
+    $("#menu_inic").addClass("active");
+  });
+  </script>
+  <!--Informacion Principal De La Pagina-->
+  <div id ="info_index" class="row" style="display:none">
+    @*<div class="jumbotron">*@
+    <div align="center">
+      @*<h1 align="center">BIENVENIDO A SOFTPARKING</h1>*@
+      <img src="~/Imagenes/softparking6.png" class="img-responsive img-circle">
+    </div>
+    <div class="text-justify container-fluid">
+      <div class="container-fluid">
+        <h2>Apreciado Usuario:</h2>
+        En cumplimiento de las normas vigentes en materia de protección de datos Personales,
+        y puntualmente de lo establecido en la Ley 1581 de 2012 y el Decreto Reglamentario 1377 de 2013,
+        a través de esta comunicación, <b>Softparking</b> Pone  en  su  conocimiento  sus  políticas de tratamiento de datos personales,
+        así como la forma en que podrá ejercer los derechos que le asisten como titular de datos personales.
+      </div>
+    </div>    
+  </div>
+
+  <!--Progress Bar De La Pagina-->
+  <div  id="progress_index" class="row" style="display:none; padding-top:300px;">
+    <div class="container-fluid">
+      <div class="container-fluid">        
+        <div class="progress">
+          <div id="progressbar_index" class="progress-bar progress-bar-striped active" role="progressbar" porc_barr ="5" style="width:5%; min-width:5%">
+            <label class="progress-inic">5%</label>
+          </div>
+          <span class="sr-only progress-inic">5%</span>
+        </div>
+        <blockquote>
+          <small><cite>Cargando...</cite></small>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>

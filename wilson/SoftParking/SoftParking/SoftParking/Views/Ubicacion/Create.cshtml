@@ -1,0 +1,63 @@
+﻿@model SoftParking.Models.ubicacion
+
+@{
+  ViewBag.Title = "Crear Ubicaciones";
+}
+
+<h2>Crear Ubicaciones</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+      <div class="col-xs-5 col-md-5 col-lg-5">
+        <label class="control-label col-sm-2" for="tama_ubic">TAMAÑO </label>
+        @{
+          List<SelectListItem> tama_esta = new List<SelectListItem>();
+          tama_esta.Add(new SelectListItem { Text = "GRANDE", Value = "GRANDE" });
+          tama_esta.Add(new SelectListItem { Text = "MEDIANO", Value = "MEDIANO", });
+          tama_esta.Add(new SelectListItem { Text = "PEQUEÑO", Value = "PEQUEÑO", });
+        }
+        @Html.DropDownListFor(model => model.tama_ubic, tama_esta, htmlAttributes: new { @class = "form-control" })
+        @*<input class="form-control text-box single-line" id="minput" name="tama_ubic" type="text" value="" placeholder="Tamaño" />*@
+        <span class="field-validation-valid text-danger" data-valmsg-for="tama_ubic" data-valmsg-replace="true"></span>
+      </div>
+      <div class="col-xs-5 col-md-5 col-lg-5">
+        <label class="control-label col-sm-2" for="esta_ubic">ESTADO</label>
+        @{
+          List<SelectListItem> Opciones = new List<SelectListItem>();
+          Opciones.Add(new SelectListItem { Text = "DISPONIBLE", Value = "DISPONIBLE" });
+          Opciones.Add(new SelectListItem { Text = "OCUPADO", Value = "OCUPADO", });
+        }
+        @Html.DropDownListFor(model => model.esta_ubic, Opciones, htmlAttributes: new { @class = "form-control" })
+        
+      </div>
+      <div class="col-xs-5 col-md-5 col-lg-5">
+        <label class="control-label col-sm-2" for="piso_ubic">PISO</label>
+        <input class="form-control text-box single-line" data-val="true" data-val-number="El campo piso_ubic debe ser un número." id="minput" name="piso_ubic" type="number" value="" placeholder="Piso" />
+        <span class="field-validation-valid text-danger" data-valmsg-for="piso_ubic" data-valmsg-replace="true"></span>
+      </div>
+      <div class="col-xs-5 col-md-5 col-lg-5">
+        <label class="control-label col-sm-2" for="dist_ubic">DISTINTIVO</label>
+        <input class="form-control text-box single-line" id="minput" name="dist_ubic" type="text" value="" placeholder="A,B,C,ETC.." required />
+        <span class="field-validation-valid text-danger" data-valmsg-for="dist_ubic" data-valmsg-replace="true"></span>
+      </div>
+      <div class="col-xs-5 col-md-5 col-lg-5">
+        <label class="control-label col-sm-2" for="dist_ubic">ESTABLECER UBICACIONES</label>
+        <input class="form-control text-box single-line" id="minput" name="posicion" type="number" value="1" min="1" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-10">
+        <input type="submit" value="Crear" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+<div>
+  @Html.ActionLink("Volver", "Index")
+</div>

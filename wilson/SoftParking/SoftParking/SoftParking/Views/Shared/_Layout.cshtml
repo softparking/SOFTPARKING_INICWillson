@@ -1,0 +1,184 @@
+﻿@using SoftParking.Models;
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>@ViewBag.Title -  SOFT PARKING</title>
+  <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+  <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="~/Scripts/bootstrap.min.js"></script>
+  <script src="~/Content/javascript/SoftParking.js"></script>
+  <link href="~/Content/NavegacionLateral.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+</head>
+@{
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+} 
+
+@if (USUARIO != null)
+{
+  <body id="tab_admin">
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-1">
+              <span class="sr-only">Menu</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-btn"><img src="~/Imagenes/softparkingSmall.png" alt="logo" width="45"></a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbar-1">
+            <ul class="nav navbar-nav">
+              <li id="menu_inic" onclick="acti_ctrl(this)">@Html.ActionLink("Inicio", "Index", "Home")</li>
+              <li id="menu_quie" onclick="acti_ctrl(this)">@Html.ActionLink("Quienes Somos", "QuienesSomos", "Home")</li>
+              <li id="menu_empr" onclick="acti_ctrl(this)">@Html.ActionLink("Nuestra Empresa", "NuestraEmpresa", "Home")</li>
+              <li id="menu_misi" onclick="acti_ctrl(this)">@Html.ActionLink("Mision", "Mision", "Home")</li>
+              <li id="menu_visi" onclick="acti_ctrl(this)">@Html.ActionLink("Vision", "Vision", "Home")</li>
+              @*<li id="menu_cont" onclick="acti_ctrl(this)">@Html.ActionLink("Contactenos", "Contactenos", "Home")</li>*@
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <button type="button" class="btn btn-danger navbar-btn" onclick="location.href='@Url.Action("Logout", "Logeo")'">
+                  Logout
+                  <span class="glyphicon glyphicon-user"></span>
+                </button>
+              </li>
+              <li>
+                <div id="load_tran" style="display:none"><img src="~/Imagenes/procesa.gif" alt="logo" width="36"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- columna izquierda  incluir barra de navegacion lateral -->
+    <div class="row content" style="padding-top:51px">
+      <div class="col-sm-2 sidenav" style="position:fixed">
+        <nav class="navbar navbar-inverse sidebar navbar-static-top " role="navigation" id="Barra2">
+          <div class="container-fluid">
+            <div class="navbar-header navbar-right">
+              <label class="label label-success col-xs-12">Administrador: @USUARIO.Usuario</label>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Barra_iz">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="Barra_iz">
+              <!-- Brand and toggle get grouped for better mobile display  cabecera -->
+              <div class="navbar-header">
+                <a>Opciones</a>
+              </div>
+              <!-- Barra de navegacion para enlazar las vistas -->
+              <ul class="nav navbar-nav ">
+                <li onclick="$('.mante').toggle('display')"><label  id="lbl_mante" class='label label-info col-xs-12'>Mantenimiento</label></li>
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Servicios")">
+                    Servicios
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-scale"></span>
+                  </a>
+                </li>
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Empleado")">
+                    Empleados
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span>
+                  </a>
+                </li>
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Clientes")">
+                    Clientes
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-book"></span>
+                  </a>
+                </li>
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Cajas")">
+                    Cajas
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-inbox"></span>
+                  </a>
+                </li>                
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Privilegio_cliente")">
+                    Privilegios
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-star"></span>
+                  </a>
+                </li>
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Tipo_vehiculo")">
+                    Tipos Vehiculo
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-blackboard"></span>
+                  </a>
+                </li>
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Lista_negra")">
+                    Lista Negra
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-alert"></span>
+                  </a>
+                </li>        
+                <li class="mante" style="display:none">
+                  <a href="@Url.Action("Index", "Ubicacion")">
+                    Ubicaciones
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-map-marker"></span>
+                  </a>
+                </li>        
+                <li><label id="lbl_cons" class='label label-info col-xs-12'>Consultas</label></li>
+                <li>
+                  <a href="@Url.Action("Index", "Turno")">
+                    Verificar Turnos
+                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-hourglass"></span>
+                  </a>
+                </li>
+                <li><label id="lbl_repo" class='label label-info col-xs-12'>Reportes</label></li>
+                <li><a href="#">Profile<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+                <li><a href="#">Messages<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- fin de la barra de navegacion lateral  -->
+      </div>
+
+      <div class="row content">
+        <div class="col-md-2 col-sm-2"></div>
+        <div class="col-md-8 col-sm-8" id="cont_body">
+          <!--Inyeccion Del Cuerpo De Las Paginas-->
+          @RenderBody()
+        </div>
+        <div class="col-md-2 col-sm-2"></div>
+      </div>
+
+      <!--Modal Mensajes-->
+      <div class="modal fade" id="Message" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Información</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+}
+else
+{
+  <h1>PAGINA NO DISPONIBLE</h1>
+}
+</html>
+

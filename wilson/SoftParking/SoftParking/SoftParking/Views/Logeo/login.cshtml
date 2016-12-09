@@ -1,0 +1,25 @@
+﻿@{ 
+    ViewBag.Title = "Iniciar Sesion";
+}
+<br /><br /><br />
+<div class="container-fluid">  
+  <div class="col-sm-6 col-md-6 col-md-offset-3">
+    <h1 class="text-center">Iniciar Sesion</h1>
+    <div>
+      <center>
+        <img class="img-responsive img-circle" src="/Imagenes/Login.png" alt="">
+      </center>
+      <div class="form-group">
+        <label class="sr-only">Usuario:</label>
+        <input class="form-control" placeholder="Usuario" required="" autofocus id="txt_usuario" type="text">
+      </div>
+      <div class="form-group">
+        <label class="sr-only">Contraseña:</label>
+        <input class="form-control" placeholder="Contraseña" required="" id="txt_password" type="password">
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="IniciarSesion()">
+        Iniciar Sesion
+      </button>
+    </div>
+  </div>  
+</div>   

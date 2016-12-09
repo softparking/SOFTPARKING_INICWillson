@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SoftParking.Models.lista_negra>
+@using SoftParking.Models;
+@{
+  ViewBag.Title = "Lista Negra";
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+@if (USUARIO != null)
+{
+  <h2>Lista Negra</h2>
+  <table class="table  table-responsive table-bordered table-striped table-hover">
+    <tr>
+      <th>PLACA</th>
+      <th>OBSERVACION</th>
+      <th>ESTADO</th>
+      <th colspan="2">ACCIONES</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.vehiculo.plac_vehi)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.obse_list)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.esta_list)
+        </td>
+        <td align="center">
+          <button type="button" class="btn btn-danger" onclick="ConfEstadoLista('@item.plac_vehi');">
+            Cambiar Estado
+            <span class="glyphicon glyphicon-erase"></span>
+          </button>
+        </td>        
+      </tr>
+    }
+
+  </table>
+  <div class="container-fluid col-md-12" align="center">
+    <a class="btn btn-success" href="@Url.Action("Create","Lista_negra")">
+      Añadir A Lista Negra
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+}
+else
+{
+  <br /><br /><br />
+  <h1>PAGINA NO DISPONIBLE </h1>
+  <a class="btn btn-danger" href="@Url.Action("Login","Logeo")">
+    Volver
+    <span class="glyphicon glyphicon-backward"></span>
+  </a>
+}

@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "facturaIngreso";
+    var placa= ViewBag.placa;
+    var numPISO = ViewBag.pisoUbicacion;
+    var fecha = ViewBag.fechaIng;
+    var letra = ViewBag.distintivo;
+    var idServicio = ViewBag.idServicio;
+    var vahia = ViewBag.CodVahia;
+
+
+
+
+}
+<script language="Javascript">
+    function imprimir() {
+        var objeto = document.getElementById('imprimir');  //obtenemos el objeto a imprimir
+        var ventana = window.open('', '_blank');  //abrimos una ventana vacía nueva
+        ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
+        ventana.document.close();  //cerramos el documento
+        ventana.print();  //imprimimos la ventana
+        ventana.close();  //cerramos la ventana
+    }
+</script>
+
+<h2></h2>
+<div class="container container-fluid">
+    <div class="col-sm-5" id="imprimir">
+        <h2>              SOFTPARKING                     </h2>
+        <h4>           REGISTRO DE INGRESO                </h4><br />
+        <img src="~/Imagenes/tickets/SoftparkingTicket.png" width="250" height="150" />
+        <P>FECHA:                                   @fecha </P>
+        <p>TICKET #:                            @idServicio</p>
+        <P>PLACA:                                    @placa</P>
+        <p>------------------------------------------------</p>
+        <P>UBICACION:                       @vahia - @letra</P>
+        <p>NUM PISO                                @numPISO</p>
+        <p>------------------------------------------------</p>
+        <H1>              BIENVENIDO                       </H1>
+        <p>------------------------------------------------</p>    
+    </div>
+    
+</div>
+<div class="col-md-5">
+        
+      </p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <button class="glyphicon glyphicon-print" onclick="imprimir()"> IMPRIMIR</button>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+     </p>
+          
+</div>

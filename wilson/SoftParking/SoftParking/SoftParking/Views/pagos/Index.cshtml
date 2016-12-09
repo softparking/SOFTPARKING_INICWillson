@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SoftParking.Models.pago>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nume_fact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_pago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fech_pago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.iva_pago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tota_pago)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nume_fact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_pago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fech_pago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.iva_pago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tota_pago)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SoftParking.Models.empleado>
+
+@using SoftParking.Models;
+@{
+  ViewBag.Title = "Empleados";
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+
+@if (USUARIO != null)
+{
+  <h2>Empleados</h2>
+  <table class="table  table-responsive table-bordered table-striped table-hover">
+    <tr>
+      <th>IDENTIFICACION</th>
+      <th>NOMBRE</th>
+      <th>APELLIDO</th>
+      <th>DIRECCIÓN</th>
+      <th>USUARIO</th>
+      <th>CONTRASEÑA</th>
+      <th>CARGO</th>
+      <th colspan="2">ACCIONES</th>      
+    </tr>
+
+    @foreach (var item in Model)
+        {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.iden_empl)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.nomb_empl)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.apel_empl)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.dire_empl)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.usua_empl)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.cont_empl)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.carg_empl)
+        </td>
+        <td align="center">       
+          <button type="button" class="btn btn-danger" onclick="ConfEliminaEmpleado('@item.codi_empl');">
+            Eliminar
+            <span class="glyphicon glyphicon-erase"></span>
+          </button>   
+        </td>
+        <td align="center">
+          <a class="btn btn-warning" href="@Url.Action("Edit","Empleado", new { id = item.codi_empl})">
+            Editar
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>         
+        </td>
+      </tr>
+    }
+  </table>
+  <div class="container-fluid col-md-12" align="center">
+    <a class="btn btn-success" href="@Url.Action("Create","Empleado")">
+      Crear Empleado
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+}
+else
+{
+  <br /><br /><br />
+  <h1>PAGINA NO DISPONIBLE </h1>      
+  <a class="btn btn-danger" href="@Url.Action("Login","Logeo")">
+    Volver
+    <span class="glyphicon glyphicon-backward"></span>
+  </a>  
+}

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SoftParking.Models.caja>
+@using SoftParking.Models;
+@{
+  ViewBag.Title = "Cajas";
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+@if (USUARIO != null)
+{
+  <h2>Cajas</h2>
+  <table class="table  table-responsive table-bordered table-striped table-hover">
+    <tr>
+      <th>NOMBRE</th>
+      <th>ESTADO</th>
+      <th>OBSERVACION</th>
+      <th colspan="2">ACCIONES</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.nomb_caja)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.esta_caja)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.obse_caja)
+        </td>
+        <td align="center">
+          <button type="button" class="btn btn-danger" onclick="ConfEliminaCaja('@item.codi_caja');">
+            Eliminar
+            <span class="glyphicon glyphicon-erase"></span>
+          </button>
+        </td>
+        <td align="center">
+          <a class="btn btn-warning" href="@Url.Action("Edit","Cajas", new { id = item.codi_caja})">
+            Editar
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>
+        </td>
+      </tr>
+    }
+
+  </table>
+  <div class="container-fluid col-md-12" align="center">
+    <a class="btn btn-success" href="@Url.Action("Create","Cajas")">
+      Crear Caja
+      <span class="glyphicon glyphicon-plus"></span>
+    </a>
+  </div>
+}
+else
+{
+  <br /><br /><br />
+  <h1>PAGINA NO DISPONIBLE </h1>
+  <a class="btn btn-danger" href="@Url.Action("Login","Logeo")">
+    Volver
+    <span class="glyphicon glyphicon-backward"></span>
+  </a>
+}

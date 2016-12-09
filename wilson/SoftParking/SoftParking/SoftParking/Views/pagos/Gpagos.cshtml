@@ -1,0 +1,54 @@
+﻿@model SoftParking.Models.pago
+
+@{
+    ViewBag.Title = "Gpagos";
+
+    var tiempoTotal =ViewBag.ttota ;
+    var ValorTiemp=ViewBag.valtiem ;
+    var fecha =ViewBag.fechTa;
+    var numFacServ=ViewBag.numserv ;
+    var metodo_pago= ViewBag.metpag ;
+    var ivaPago =ViewBag.eliva ;
+    var totalAPagar= ViewBag.totapag  ;
+    var placa = ViewBag.Placa;
+}
+<script language="Javascript">
+    function imprimir() {
+        var objeto = document.getElementById('imprimir');  //obtenemos el objeto a imprimir
+        var ventana = window.open('', '_blank');  //abrimos una ventana vacía nueva
+        ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
+        ventana.document.close();  //cerramos el documento
+        ventana.print();  //imprimimos la ventana
+        ventana.close();  //cerramos la ventana
+    }
+</script>
+
+<div class="container container-fluid">
+    <div class="col-sm-4" id="imprimir">
+        <h2>             SOFTPARKING              </h2><br />
+        <img src="~/Imagenes/tickets/SoftparkingTicket.png" width="250" height="150" />
+        <P>FECHA:                                  @fecha </p>      
+        <p>FACTURA:                            @numFacServ</P>
+        <P>PLACA:                                  @placa</P>
+        <p>-----------------------------------------------</p>
+        <P>METODO PAGO:                       @metodo_pago</P>
+        <P>TIEMPO CONSUMO:                    @tiempoTotal</P>
+        <P>VALOR:                              @ValorTiemp</P>
+        <P>IVA:                                   @ivaPago</P>
+        <p>-----------------------------------------------</p>
+        <p>TOTAL:                             @totalAPagar</p>
+        <p>-----------------------------------------------</p>
+    </div>
+</div>
+<div class="col-md-5">
+
+    </p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="glyphicon glyphicon-print" onclick="imprimir()"> IMPRIMIR</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+    </p>
+
+</div>
+
+
+
+

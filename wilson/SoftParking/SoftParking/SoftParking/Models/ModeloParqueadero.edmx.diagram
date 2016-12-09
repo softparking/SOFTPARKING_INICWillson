@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7fb34fbdacf9439b8ff95d473f28eba1" Name="Diagram1" ZoomLevel="112">
+        <EntityTypeShape EntityType="parqueaderoModel.caja" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.cliente" Width="1.5" PointX="11.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.detalle_pago" Width="1.5" PointX="7.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.empleado" Width="1.5" PointX="2.375" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.pago" Width="1.5" PointX="10.625" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.privilegio_cliente" Width="1.5" PointX="14" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.servicio" Width="1.5" PointX="5.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.tipo_vehiculo" Width="1.5" PointX="12.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.vehiculo" Width="1.5" PointX="9.375" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="parqueaderoModel.lista_negra" Width="1.5" PointX="8.5" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="parqueaderoModel.fk_cliente_privilegio" ManuallyRouted="false" />
+        <AssociationConnector Association="parqueaderoModel.fk_vehiculo_client" ManuallyRouted="false" />
+        <AssociationConnector Association="parqueaderoModel.fk_detalle_pago" ManuallyRouted="false" />
+        <AssociationConnector Association="parqueaderoModel.fk_detalle_serv" ManuallyRouted="false" />
+        <AssociationConnector Association="parqueaderoModel.fk_servicio_cod_emp" ManuallyRouted="false" />
+        <AssociationConnector Association="parqueaderoModel.fk_servicio_placa" ManuallyRouted="false" />
+        <AssociationConnector Association="parqueaderoModel.fk_vehiculo_tipo" ManuallyRouted="false" />
+        <AssociationConnector Association="parqueaderoModel.fk_listanegra_placa" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="parqueaderoModel.turno" Width="1.5" PointX="2.375" PointY="0.5" />
+        <AssociationConnector Association="parqueaderoModel.fk_turno_caja" />
+        <AssociationConnector Association="parqueaderoModel.fk_turno_empleado" />
+        <EntityTypeShape EntityType="parqueaderoModel.ubicacion" Width="1.5" PointX="4.375" PointY="7.875" />
+        <AssociationConnector Association="parqueaderoModel.fk_servicio_ubicacion" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

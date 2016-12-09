@@ -1,0 +1,67 @@
+﻿@model SoftParking.Models.privilegio_cliente
+
+@{
+  ViewBag.Title = "Modificar Privilegio";
+}
+
+<h2>Modificar Privilegio</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <sdiv class="form-horizontal">    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.codi_priv)
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.tipo_priv, "TIPO", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.tipo_priv, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.tipo_priv, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.tari_priv, "TARIFA", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.tari_priv, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.tari_priv, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.esta_priv, "ESTADO", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @{
+          List<SelectListItem> Opciones = new List<SelectListItem>();
+          Opciones.Add(new SelectListItem { Text = "ACTIVA", Value = "ACT" });
+          Opciones.Add(new SelectListItem { Text = "INACTIVA", Value = "INA", });
+        }
+        @Html.DropDownListFor(model => model.esta_priv, Opciones, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.esta_priv, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    <div class="form-group">
+      @*@Html.LabelFor(model => model.fech_priv, "FECHA CREACION", htmlAttributes: new { @class = "control-label col-md-2" })*@
+      <div class="col-md-10">
+        @*@Html.EditorFor(model => model.fech_priv, new { htmlAttributes = new { @class = "form-control"} })*@        
+        @{
+          string fecha;
+          fecha = DateTime.Now.ToLocalTime().ToString();
+        }
+        <input class="form-control text-box single-line" id="fech_priv" name="fech_priv" value="@fecha" type="hidden" >
+        @Html.ValidationMessageFor(model => model.fech_priv, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Modificar" class="btn btn-default" />
+      </div>
+    </div>
+  </sdiv>
+}
+<div>
+  @Html.ActionLink("Volver", "Index")
+</div>

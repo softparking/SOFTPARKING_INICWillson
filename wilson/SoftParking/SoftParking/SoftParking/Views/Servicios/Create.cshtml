@@ -1,0 +1,228 @@
+﻿@model SoftParking.Models.servicio
+@using SoftParking.Models
+@{
+  ViewBag.Title = "ASIGNAR SERVICIO";
+  var fecha = DateTime.Today.ToString("MM/dd/yyyy");
+  var hora = DateTime.Now.ToString("HH:mm:ss");
+  var vahias = ViewBag.vahias;
+  var disp = ViewBag.disponible;
+  var ocup = ViewBag.ocupado;
+  var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+
+  var TicketIngreso = TempData["EviarTicket"];
+}
+@if (USUARIO != null)
+{
+  <div class="col-lg-offset-6"><img src="~/Imagenes/Banners/Servicios.png" width="392" height="72" /></div>
+    <script>
+      //script generar hora dinamica
+      function updateClock() {
+        var currentTime = new Date();
+        var currentHours = currentTime.getHours();
+        var currentMinutes = currentTime.getMinutes();
+        var currentSeconds = currentTime.getSeconds();
+        currentHours = (currentHours < 10 ? "0" : "") + currentHours;
+        currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+        currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+        var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
+
+
+        $("#hora").val(currentTimeString);
+
+      }
+      //update cloclk me actualiza la variable en  1 segundo
+      $(document).ready(function () {
+        setInterval('updateClock()', 1000);
+      });
+    </script>
+    <script>
+
+      $(document).ready(function () {
+        $('#Mensaje').modal('show');
+
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $('#MensajeExito').hide().show('slow').delay(3000).hide('slow');
+      });
+    </script>
+
+        <script type="text/javascript">
+          window.onload = function () {
+
+
+            var valortick = document.getElementById("prueba").value;
+
+            if (valortick != null) {
+              ejecutar();
+            }
+
+          }
+          function ejecutar() {
+            window.open(href = "@Url.Action("facturaIngreso", "pagos", new { placaVehiculo = TicketIngreso })", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=600,left=600,width=500,height=500");
+          }
+
+        </script>
+
+
+
+  using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+
+
+
+        <!--PANEL DE VAHIAS -->
+    <div class="jumbotron form-horizontal" style="border:1px solid">
+      <div class="center-block">
+        <table class="table-bordered" style="margin: 0 auto;">
+          <tr class="text-center active">
+            <th class="alert-success">
+              ESPACIOS TOTALES
+            </th>
+
+            <th class="alert-success">
+              ESPACIOS DISPONIBLES
+            </th>
+
+            <th class="alert-success">
+              ESPACIOS OCUPADOS
+            </th>
+          </tr>
+          <tr class="text-center">
+            <th class="text-center">
+              <input type="text" value="@vahias" disabled />
+              @*@vahias*@
+            </th>
+            <th class="text-center">
+              <input type="text" value="@disp" disabled />
+              @*@vahias*@
+            </th>
+
+            <th class="text-center">
+              <input type="text" value="@ocup" disabled />
+              @*@vahias*@
+            </th>
+
+          </tr>
+        </table>
+      </div><hr />
+
+      <!-- INICIO   DEL FORMULARIO     -->
+
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      <div class="col-md-6">
+
+        <label for="fechaserv">FECHA</label><br />
+        <div>
+          <input type="text" class="form-control" name="fech_serv" style="font-size: 15pt;" value="@fecha" readonly />
+
+        </div><br />
+        <label>TIPO DE VEHICULO</label><br />
+        <div>
+          @Html.DropDownList("tipo_vehi", null, htmlAttributes: new { @class = "form-control", @style = "float: left" })
+        </div><hr />
+
+
+        @*-----------------------------------------------------hhhhh-------------------------*@
+
+
+        @*codigo de usuario*@
+        <input type="number" name="codi_empl" value="@USUARIO.UserID" hidden />
+
+
+      </div>@*termina la columna  con espacios de 6 posciciones*@
+
+      <div class="col-md-offset-6">
+        <label for="Mplac" id="placas" size="35">PLACA DEL VEHICULO</label><br />
+        <INPUT id=text1 style="WIDTH: 300px; HEIGHT: 100px; font-size: 50pt;text-transform:uppercase;background:yellow " name="plac_vehi" minlength="6" maxlength="6" autocomplete="off" required>
+      </div><br />
+      <div class="col-md-offset-6" id="Eldiv">
+        <label for="Mplac" id="numeros" size="35">HORA</label><br />
+        <INPUT type="text" class="text-center" id="hora" style="WIDTH: 300px; HEIGHT: 80px; font-size: 50pt;text-transform:uppercase " name="hora_entr" value="@hora">
+      </div><br />
+
+
+
+      <div class="form-group">
+        <div class="col-md-offset-6">
+          <button type="submit" class="btn btn-info" name="Create" value="Create">Registrar Entrada</button>&nbsp;&nbsp;
+          <button type="submit" class="btn btn-info" name="Salida" value="Salida" formaction="@Url.Action("Salida","servicios")">Registrar Salida</button>
+        </div>
+      </div>
+      @if (TempData["MSGEXITOSO"] != null)
+      {
+        <div id="MensajeExito" class="text-center alert-success">@TempData["MSGEXITOSO"] </div>
+                <input id="prueba" hidden type="text" value="@TempData["EviarTicket"]" />
+      }
+
+
+      @if (TempData["SinEspacio"] != null)
+      {
+
+        <div class="modal fade" id="Mensaje" role="dialog">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger">SIN ESPACIO</h4>
+              </div>
+              <div class="modal-body">
+                <div class="text-center" style="font-size: 10pt">@TempData["SinEspacio"].</div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+
+      @if (TempData["ServErr"] != null)
+      {
+        <div class="modal fade" id="Mensaje" role="dialog">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger "> !ERROR! </h4>
+              </div>
+              <div class="modal-body">
+                <div class="text-center" style="font-size: 10pt">@TempData["ServErr"].</div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (TempData["Dobleingreso"] != null)
+      {
+        <div class="modal fade" id="Mensaje" role="dialog">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger "> !ERROR! </h4>
+              </div>
+              <div class="modal-body">
+                <div class="text-center" style="font-size: 10pt">@TempData["Dobleingreso"]</div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <div>
+      @Html.ActionLink("Back to List", "Index")
+    </div>
+  }
+}

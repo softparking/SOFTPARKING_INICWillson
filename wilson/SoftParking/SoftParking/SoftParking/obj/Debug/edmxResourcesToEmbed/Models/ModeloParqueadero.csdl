@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="parqueaderoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="caja">
+    <Key>
+      <PropertyRef Name="codi_caja" />
+    </Key>
+    <Property Name="codi_caja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomb_caja" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="esta_caja" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="obse_caja" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="turno" Relationship="parqueaderoModel.fk_turno_caja" FromRole="caja" ToRole="turno" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="codi_clie" />
+    </Key>
+    <Property Name="codi_clie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iden_clie" Type="Int32" Nullable="false" />
+    <Property Name="nomb_clie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apel_clie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="codi_priv" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="privilegio_cliente" Relationship="Self.fk_cliente_privilegio" FromRole="cliente" ToRole="privilegio_cliente" />
+    <NavigationProperty Name="vehiculo" Relationship="Self.fk_vehiculo_client" FromRole="cliente" ToRole="vehiculo" />
+  </EntityType>
+  <EntityType Name="detalle_pago">
+    <Key>
+      <PropertyRef Name="idet_pago" />
+    </Key>
+    <Property Name="idet_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tiem_tota" Type="Time" Nullable="false" />
+    <Property Name="tota_deta" Type="Double" Nullable="false" />
+    <Property Name="nume_fact" Type="Int32" Nullable="false" />
+    <Property Name="codi_serv" Type="Int32" Nullable="false" />
+    <Property Name="codi_pago" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pago" Relationship="Self.fk_detalle_pago" FromRole="detalle_pago" ToRole="pago" />
+    <NavigationProperty Name="servicio" Relationship="Self.fk_detalle_serv" FromRole="detalle_pago" ToRole="servicio" />
+  </EntityType>
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="codi_empl" />
+    </Key>
+    <Property Name="codi_empl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iden_empl" Type="Int64" Nullable="false" />
+    <Property Name="nomb_empl" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apel_empl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dire_empl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usua_empl" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="cont_empl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="carg_empl" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="servicio" Relationship="Self.fk_servicio_cod_emp" FromRole="empleado" ToRole="servicio" />
+    <NavigationProperty Name="turno" Relationship="parqueaderoModel.fk_turno_empleado" FromRole="empleado" ToRole="turno" />
+  </EntityType>
+  <EntityType Name="pago">
+    <Key>
+      <PropertyRef Name="codi_pago" />
+    </Key>
+    <Property Name="codi_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nume_fact" Type="Int32" Nullable="false" />
+    <Property Name="tipo_pago" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fech_pago" Type="DateTime" Nullable="false" />
+    <Property Name="iva_pago" Type="Int32" />
+    <Property Name="tota_pago" Type="Double" Nullable="false" />
+    <NavigationProperty Name="detalle_pago" Relationship="Self.fk_detalle_pago" FromRole="pago" ToRole="detalle_pago" />
+  </EntityType>
+  <EntityType Name="privilegio_cliente">
+    <Key>
+      <PropertyRef Name="codi_priv" />
+    </Key>
+    <Property Name="codi_priv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_priv" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tari_priv" Type="Int32" Nullable="false" />
+    <Property Name="esta_priv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fech_priv" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.fk_cliente_privilegio" FromRole="privilegio_cliente" ToRole="cliente" />
+  </EntityType>
+  <EntityType Name="servicio">
+    <Key>
+      <PropertyRef Name="codi_serv" />
+    </Key>
+    <Property Name="codi_serv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fech_serv" Type="DateTime" Nullable="false" />
+    <Property Name="hora_entr" Type="Time" Nullable="false" />
+    <Property Name="fech_sali" Type="DateTime" />
+    <Property Name="hora_sali" Type="Time" Nullable="true" />
+    <Property Name="codi_empl" Type="Int32" Nullable="false" />
+    <Property Name="plac_vehi" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="codi_ubic" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="detalle_pago" Relationship="Self.fk_detalle_serv" FromRole="servicio" ToRole="detalle_pago" />
+    <NavigationProperty Name="empleado" Relationship="Self.fk_servicio_cod_emp" FromRole="servicio" ToRole="empleado" />
+    <NavigationProperty Name="vehiculo" Relationship="Self.fk_servicio_placa" FromRole="servicio" ToRole="vehiculo" />
+    <NavigationProperty Name="ubicacion" Relationship="parqueaderoModel.fk_servicio_ubicacion" FromRole="servicio" ToRole="ubicacion" />
+  </EntityType>
+  <EntityType Name="tipo_vehiculo">
+    <Key>
+      <PropertyRef Name="tipo_vehi" />
+    </Key>
+    <Property Name="tipo_vehi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomb_vehi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="vehiculo" Relationship="Self.fk_vehiculo_tipo" FromRole="tipo_vehiculo" ToRole="vehiculo" />
+    <Property Name="tari_vehi" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vehiculo">
+    <Key>
+      <PropertyRef Name="plac_vehi" />
+    </Key>
+    <Property Name="plac_vehi" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="colo_vehi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="obse_vehi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="marc_vehi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_vehi" Type="Int32" Nullable="false" />
+    <Property Name="codi_clie" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.fk_vehiculo_client" FromRole="vehiculo" ToRole="cliente" />
+    <NavigationProperty Name="servicio" Relationship="Self.fk_servicio_placa" FromRole="vehiculo" ToRole="servicio" />
+    <NavigationProperty Name="tipo_vehiculo" Relationship="Self.fk_vehiculo_tipo" FromRole="vehiculo" ToRole="tipo_vehiculo" />
+    <NavigationProperty Name="lista_negra" Relationship="Self.fk_listanegra_placa" FromRole="vehiculo" ToRole="lista_negra" />
+  </EntityType>
+  <EntityType Name="lista_negra">
+    <Key>
+      <PropertyRef Name="esta_list" />
+      <PropertyRef Name="obse_list" />
+      <PropertyRef Name="plac_vehi" />
+    </Key>
+    <Property Name="esta_list" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="obse_list" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="plac_vehi" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="vehiculo" Relationship="Self.fk_listanegra_placa" FromRole="lista_negra" ToRole="vehiculo" />
+  </EntityType>
+  <Association Name="fk_cliente_privilegio">
+    <End Role="privilegio_cliente" Type="Self.privilegio_cliente" Multiplicity="1" />
+    <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="privilegio_cliente">
+        <PropertyRef Name="codi_priv" />
+      </Principal>
+      <Dependent Role="cliente">
+        <PropertyRef Name="codi_priv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_vehiculo_client">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="codi_clie" />
+      </Principal>
+      <Dependent Role="vehiculo">
+        <PropertyRef Name="codi_clie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_detalle_pago">
+    <End Role="pago" Type="Self.pago" Multiplicity="1" />
+    <End Role="detalle_pago" Type="Self.detalle_pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pago">
+        <PropertyRef Name="codi_pago" />
+      </Principal>
+      <Dependent Role="detalle_pago">
+        <PropertyRef Name="codi_pago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_detalle_serv">
+    <End Role="servicio" Type="Self.servicio" Multiplicity="1" />
+    <End Role="detalle_pago" Type="Self.detalle_pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="servicio">
+        <PropertyRef Name="codi_serv" />
+      </Principal>
+      <Dependent Role="detalle_pago">
+        <PropertyRef Name="codi_serv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_servicio_cod_emp">
+    <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+    <End Role="servicio" Type="Self.servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empleado">
+        <PropertyRef Name="codi_empl" />
+      </Principal>
+      <Dependent Role="servicio">
+        <PropertyRef Name="codi_empl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_servicio_placa">
+    <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="1" />
+    <End Role="servicio" Type="Self.servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehiculo">
+        <PropertyRef Name="plac_vehi" />
+      </Principal>
+      <Dependent Role="servicio">
+        <PropertyRef Name="plac_vehi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_vehiculo_tipo">
+    <End Role="tipo_vehiculo" Type="Self.tipo_vehiculo" Multiplicity="1" />
+    <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipo_vehiculo">
+        <PropertyRef Name="tipo_vehi" />
+      </Principal>
+      <Dependent Role="vehiculo">
+        <PropertyRef Name="tipo_vehi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_listanegra_placa">
+    <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="1" />
+    <End Role="lista_negra" Type="Self.lista_negra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehiculo">
+        <PropertyRef Name="plac_vehi" />
+      </Principal>
+      <Dependent Role="lista_negra">
+        <PropertyRef Name="plac_vehi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="parqueaderoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="caja" EntityType="Self.caja" />
+    <EntitySet Name="cliente" EntityType="Self.cliente" />
+    <EntitySet Name="detalle_pago" EntityType="Self.detalle_pago" />
+    <EntitySet Name="empleado" EntityType="Self.empleado" />
+    <EntitySet Name="pago" EntityType="Self.pago" />
+    <EntitySet Name="privilegio_cliente" EntityType="Self.privilegio_cliente" />
+    <EntitySet Name="servicio" EntityType="Self.servicio" />
+    <EntitySet Name="tipo_vehiculo" EntityType="Self.tipo_vehiculo" />
+    <EntitySet Name="vehiculo" EntityType="Self.vehiculo" />
+    <EntitySet Name="lista_negra" EntityType="Self.lista_negra" />
+    <AssociationSet Name="fk_cliente_privilegio" Association="Self.fk_cliente_privilegio">
+      <End Role="privilegio_cliente" EntitySet="privilegio_cliente" />
+      <End Role="cliente" EntitySet="cliente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_vehiculo_client" Association="Self.fk_vehiculo_client">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="vehiculo" EntitySet="vehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_detalle_pago" Association="Self.fk_detalle_pago">
+      <End Role="pago" EntitySet="pago" />
+      <End Role="detalle_pago" EntitySet="detalle_pago" />
+    </AssociationSet>
+    <AssociationSet Name="fk_detalle_serv" Association="Self.fk_detalle_serv">
+      <End Role="servicio" EntitySet="servicio" />
+      <End Role="detalle_pago" EntitySet="detalle_pago" />
+    </AssociationSet>
+    <AssociationSet Name="fk_servicio_cod_emp" Association="Self.fk_servicio_cod_emp">
+      <End Role="empleado" EntitySet="empleado" />
+      <End Role="servicio" EntitySet="servicio" />
+    </AssociationSet>
+    <AssociationSet Name="fk_servicio_placa" Association="Self.fk_servicio_placa">
+      <End Role="vehiculo" EntitySet="vehiculo" />
+      <End Role="servicio" EntitySet="servicio" />
+    </AssociationSet>
+    <AssociationSet Name="fk_vehiculo_tipo" Association="Self.fk_vehiculo_tipo">
+      <End Role="tipo_vehiculo" EntitySet="tipo_vehiculo" />
+      <End Role="vehiculo" EntitySet="vehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_listanegra_placa" Association="Self.fk_listanegra_placa">
+      <End Role="vehiculo" EntitySet="vehiculo" />
+      <End Role="lista_negra" EntitySet="lista_negra" />
+    </AssociationSet>
+    <EntitySet Name="turno" EntityType="parqueaderoModel.turno" />
+    <AssociationSet Name="fk_turno_caja" Association="parqueaderoModel.fk_turno_caja">
+      <End Role="caja" EntitySet="caja" />
+      <End Role="turno" EntitySet="turno" />
+    </AssociationSet>
+    <AssociationSet Name="fk_turno_empleado" Association="parqueaderoModel.fk_turno_empleado">
+      <End Role="empleado" EntitySet="empleado" />
+      <End Role="turno" EntitySet="turno" />
+    </AssociationSet>
+    <EntitySet Name="ubicacion" EntityType="parqueaderoModel.ubicacion" />
+    <AssociationSet Name="fk_servicio_ubicacion" Association="parqueaderoModel.fk_servicio_ubicacion">
+      <End Role="ubicacion" EntitySet="ubicacion" />
+      <End Role="servicio" EntitySet="servicio" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="turno">
+    <Key>
+      <PropertyRef Name="codi_turn" />
+    </Key>
+    <Property Name="codi_turn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codi_empl" Type="Int32" Nullable="false" />
+    <Property Name="codi_caja" Type="Int32" Nullable="false" />
+    <Property Name="fech_inic" Type="DateTime" Nullable="false" />
+    <Property Name="fech_fina" Type="DateTime" />
+    <Property Name="mont_inic" Type="Double" Nullable="false" />
+    <Property Name="desc_turn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="caja" Relationship="parqueaderoModel.fk_turno_caja" FromRole="turno" ToRole="caja" />
+    <NavigationProperty Name="empleado" Relationship="parqueaderoModel.fk_turno_empleado" FromRole="turno" ToRole="empleado" />
+  </EntityType>
+  <Association Name="fk_turno_caja">
+    <End Type="parqueaderoModel.caja" Role="caja" Multiplicity="1" />
+    <End Type="parqueaderoModel.turno" Role="turno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="caja">
+        <PropertyRef Name="codi_caja" />
+      </Principal>
+      <Dependent Role="turno">
+        <PropertyRef Name="codi_caja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_turno_empleado">
+    <End Type="parqueaderoModel.empleado" Role="empleado" Multiplicity="1" />
+    <End Type="parqueaderoModel.turno" Role="turno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empleado">
+        <PropertyRef Name="codi_empl" />
+      </Principal>
+      <Dependent Role="turno">
+        <PropertyRef Name="codi_empl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ubicacion">
+    <Key>
+      <PropertyRef Name="codi_ubic" />
+    </Key>
+    <Property Name="codi_ubic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tama_ubic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="esta_ubic" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="piso_ubic" Type="Int32" Nullable="false" />
+    <Property Name="dist_ubic" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="servicio" Relationship="parqueaderoModel.fk_servicio_ubicacion" FromRole="ubicacion" ToRole="servicio" />
+  </EntityType>
+  <Association Name="fk_servicio_ubicacion">
+    <End Type="parqueaderoModel.ubicacion" Role="ubicacion" Multiplicity="1" />
+    <End Type="parqueaderoModel.servicio" Role="servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ubicacion">
+        <PropertyRef Name="codi_ubic" />
+      </Principal>
+      <Dependent Role="servicio">
+        <PropertyRef Name="codi_ubic" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

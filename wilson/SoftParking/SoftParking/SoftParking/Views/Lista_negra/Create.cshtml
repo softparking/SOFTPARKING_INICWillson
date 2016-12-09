@@ -1,0 +1,48 @@
+﻿@model SoftParking.Models.lista_negra
+
+@{
+  ViewBag.Title = "Agregar A Lista Negra";
+}
+
+<h2>Agregar Vehiculo A Lista Negra</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+      @*@Html.LabelFor(model => model.esta_list, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })*@
+      <div class="col-md-10">
+        <input class="form-control text-box single-line" id="esta_list" name="esta_list" value="ACT" type="hidden">
+        @*@Html.EditorFor(model => model.esta_list, new { htmlAttributes = new { @class = "form-control" } })*@
+        @*@Html.ValidationMessageFor(model => model.esta_list, "", new { @class = "text-danger" })*@
+      </div>
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.plac_vehi, "PLACA", htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.DropDownList("plac_vehi", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.plac_vehi, "", new { @class = "text-danger" })
+      </div>
+    </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.obse_list, "OBSERVACION",htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.obse_list, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.obse_list, "", new { @class = "text-danger" })
+      </div>
+    </div>   
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Registrar" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink("Volver", "Index")
+</div>
