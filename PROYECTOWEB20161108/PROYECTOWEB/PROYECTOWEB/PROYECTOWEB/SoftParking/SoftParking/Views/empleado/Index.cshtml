@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SoftParking.Models.empleado>
+
+@using SoftParking.Models;
+@{
+    ViewBag.Title = "Index";
+    var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+
+@if (USUARIO != null)
+{
+<div class="col-lg-offset-6"><img src="~/Imagenes/Banners/usuarios.png" width="392" height="72" /></div>
+<h2>INFORMACION DE USUARIO</h2>
+<p>
+    @Html.ActionLink("Crear Nuevo Usuario", "Create")
+</p>
+
+    <table class="table  table-responsive table-bordered ">
+        <tr>
+            <th>
+                IDENTIFICACION
+            </th>
+            <th>
+                NOMBRE
+            </th>
+            <th>
+                APELLIDO
+            </th>
+            <th>
+                DIRECCION
+            </th>
+            <th>
+                USUARIO
+            </th>
+            <th>
+                CONTRASEÑA
+            </th>
+            <th>
+                CARGO
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iden_empl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomb_empl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apel_empl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dire_empl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usua_empl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cont_empl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carg_empl)
+                </td>
+                <td>
+                    @Html.ActionLink("EDITAR", "Edit", new { id = item.codi_empl }) |
+                    @Html.ActionLink("DETALLE", "Details", new { id = item.codi_empl }) |
+                    @Html.ActionLink("ELIMINAR", "Delete", new { id = item.codi_empl })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <h1>PAGINA NO DISPONIBLE </h1>
+}

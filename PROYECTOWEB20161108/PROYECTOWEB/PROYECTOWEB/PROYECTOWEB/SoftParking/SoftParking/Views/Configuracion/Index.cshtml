@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+<div class="container-fluid">
+    <div class="col-lg-offset-6"><img src="~/Imagenes/Configuracion/configuracion.png" width="392" height="72" /></div>
+     <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">ESTABLECER UBICACIONES</div>
+                <div class="panel-body"><img src="~/Imagenes/Configuracion/carrillo.png" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer text-center" ><a href="@Url.Action("Create", "ubicacion")" class="btn btn-info" role="button">ABRIR</a></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">TIPOS DE VEHICULOS</div>
+                <div class="panel-body"><img src="~/Imagenes/Configuracion/categorias.png" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer text-center"><a href="@Url.Action("Index", "tipo_vehiculo")" class="btn btn-info" role="button">ABRIR</a></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">ESTABLECER PRIVILEGIOS </div>
+                <div class="panel-body"><img src="~/Imagenes/Configuracion/privilegiosClientes.png" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer text-center"><a href="@Url.Action("Index", "privilegio_cliente")" class="btn btn-info" role="button">ABRIR</a></div>
+            </div>
+        </div>
+    </div>
+</div><br><br>
+}

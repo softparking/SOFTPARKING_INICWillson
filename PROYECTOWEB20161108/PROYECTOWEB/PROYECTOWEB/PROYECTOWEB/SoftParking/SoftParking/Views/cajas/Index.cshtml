@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SoftParking.Models.caja>
+
+@{
+    ViewBag.Title = "CAJAS";
+}
+
+<h2 class="text-center" >LISTADO DE CAJAS </h2>
+
+<p class="text-center">
+    <a href="@Url.Action("Create", "cajas")" class="btn btn-info" role="button">CREAR CAJA</a>
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            NOMBRE
+        </th>
+        <th>
+            ESTADO
+        </th>
+        <th>
+           OBSERVACIONES
+        </th>
+        <th>
+           ACCIONES
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomb_caja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.esta_caja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.obse_caja)
+        </td>
+        <td>
+            @Html.ActionLink("EDITAR", "Edit", new { id=item.codi_caja }) |
+            @Html.ActionLink("BORRAR", "Delete", new { id=item.codi_caja })
+        </td>
+    </tr>
+}
+
+</table>

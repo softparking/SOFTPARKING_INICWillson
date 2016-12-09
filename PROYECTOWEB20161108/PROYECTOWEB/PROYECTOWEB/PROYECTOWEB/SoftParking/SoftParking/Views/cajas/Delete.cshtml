@@ -1,0 +1,48 @@
+﻿@model SoftParking.Models.caja
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>caja</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nomb_caja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomb_caja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.esta_caja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.esta_caja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.obse_caja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.obse_caja)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SoftParking.Models.privilegio_cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_priv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tari_priv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.esta_priv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fech_priv)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_priv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tari_priv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.esta_priv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fech_priv)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.codi_priv }) |
+            @Html.ActionLink("Details", "Details", new { id=item.codi_priv }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.codi_priv })
+        </td>
+    </tr>
+}
+
+</table>

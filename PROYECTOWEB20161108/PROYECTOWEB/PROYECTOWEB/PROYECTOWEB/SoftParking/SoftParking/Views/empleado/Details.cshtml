@@ -1,0 +1,74 @@
+﻿@model SoftParking.Models.empleado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>DETALLES</h2>
+
+<div>
+    <h4>empleado</h4>
+    <hr />
+    <dl >
+        <dt>
+            @Html.DisplayNameFor(model => model.iden_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iden_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomb_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomb_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apel_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apel_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dire_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dire_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usua_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usua_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cont_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cont_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carg_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carg_empl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("EDITAR", "Edit", new { id = Model.codi_empl }) |
+    @Html.ActionLink("REGRESAR", "Index")
+</p>

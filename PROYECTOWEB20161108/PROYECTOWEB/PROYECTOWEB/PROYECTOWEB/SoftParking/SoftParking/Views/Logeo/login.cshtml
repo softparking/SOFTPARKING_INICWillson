@@ -1,0 +1,44 @@
+﻿@{ 
+
+    ViewBag.Title = "LOGIN";
+}
+<!-- asignamos el estilo que va atener  el formulario  de login -->
+
+     
+<link rel="stylesheet" href="~/Content/MisEstilos/login/style.css">  
+
+@using (Html.BeginForm())
+{  <!-- Tener en cuenta que el parametro (name= usuario y password)  debe  tener exactamente el mismo nombre  
+        que va a recibir la funcion post del controlador LogeoController
+       -->
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>Login</h1>
+            </div>
+
+            <div class="login-form ">
+                <div class="control-group">
+                    <input type="text" class="login-field"  name="usuario" placeholder="usuario" id="login-name" required autofocus>
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="password" class="login-field"  name="password" placeholder="password" id="login-pass" required>
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+                
+                <button class="btn btn-primary btn-large btn-block" type="submit">INICIAR </button>
+                
+                <!-- si falla el proceso  muestra el fallo-->
+
+                @if (!string.IsNullOrEmpty(ViewBag.Fallo))
+                {
+                    <div class="error alert-danger"  >@ViewBag.Fallo</div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+}

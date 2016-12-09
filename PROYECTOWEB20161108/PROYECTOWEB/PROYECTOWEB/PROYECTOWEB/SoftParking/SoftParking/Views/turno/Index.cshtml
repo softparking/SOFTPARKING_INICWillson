@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SoftParking.Models.turno>
+@using SoftParking.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+
+    var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+    //tempata["BanderaTurno"] es la variable temporal  que me valida  si el usuario ya ha iniciado turno 
+    var bandera = TempData["BanderaTurno"];
+
+    if ( bandera != null)
+    {
+        USUARIO.iniciaTurno = bandera.ToString();
+    }
+    }
+@if (USUARIO != null)
+{
+<div class="col-lg-offset-6"><img src="~/Imagenes/Banners/turnos.png" width="392" height="72" /></div>
+<h2 class="text-center">TURNOS INICIADOS </h2>
+//si inicio turno  no me  debe mostrar la opcion  iniciar turno
+    if (USUARIO.iniciaTurno =="no") {
+<p class="text-center">
+    <a href="@Url.Action("Create", "turno")" class="btn btn-info" role="button">INICIAR TURNO</a>
+</p>
+    }
+
+        <table class="table table-bordered" >
+            <tr>
+                <th>
+                    FECHA INCICIO
+                </th>
+                <th>
+                    USUARIO
+                </th>
+                <th>
+                   FECHA FIN
+                </th>
+                <th>
+                    CAJA
+                </th>
+                <th>
+                    MONTO CAJA
+                </th>
+                <th>
+                    DESCRIPCION
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fech_inic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.empleado.nomb_empl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fech_fina)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.caja.nomb_caja)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mont_inic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.desc_turn)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+}

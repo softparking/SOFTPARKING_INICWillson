@@ -1,0 +1,34 @@
+﻿@model SoftParking.Models.tipo_vehiculo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tipo_vehiculo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nomb_vehi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomb_vehi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tari_vehi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tari_vehi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.tipo_vehi }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

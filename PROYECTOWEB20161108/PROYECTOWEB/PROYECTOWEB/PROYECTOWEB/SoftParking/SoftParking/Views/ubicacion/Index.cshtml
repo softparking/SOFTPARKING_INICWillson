@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SoftParking.Models.ubicacion>
+
+@{
+    ViewBag.Title = "UBICACIONES";
+}
+
+<div class="col-lg-offset-6"><img src="~/Imagenes/Banners/ubicaciones.png" width="392" height="72" /></div>
+<p>
+    @Html.ActionLink("ASIGNAR UBICACIONES", "Create")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+           CODIGO
+        </th>
+        <th>
+           TAMAÑO
+        </th>
+        <th>
+           ESTADO
+        </th>
+        <th>
+           PISO
+        </th>
+        <th>
+           DISTINTIVO
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codi_ubic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tama_ubic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.esta_ubic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.piso_ubic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dist_ubic)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.codi_ubic }) |
+            @Html.ActionLink("Details", "Details", new { id=item.codi_ubic }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.codi_ubic })
+        </td>
+    </tr>
+}
+
+</table>

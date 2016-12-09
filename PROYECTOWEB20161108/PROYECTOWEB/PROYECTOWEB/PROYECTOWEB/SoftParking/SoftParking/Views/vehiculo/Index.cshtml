@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SoftParking.Models.vehiculo>
+
+@using SoftParking.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@{
+
+    var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+<h2>BIENVENIDO @USUARIO.Usuario</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.colo_vehi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.obse_vehi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.marc_vehi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cliente.nomb_clie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_vehiculo.nomb_vehi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.colo_vehi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.obse_vehi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.marc_vehi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.nomb_clie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_vehiculo.nomb_vehi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.plac_vehi }) |
+            @Html.ActionLink("Details", "Details", new { id=item.plac_vehi }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.plac_vehi })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SoftParking.Models.servicio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("ASIGNAR SERVICIO", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fech_serv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hora_entr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hora_sali)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.empleado.nomb_empl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vehiculo.colo_vehi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ubicacion.tama_ubic)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fech_serv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hora_entr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hora_sali)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.empleado.nomb_empl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vehiculo.colo_vehi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ubicacion.tama_ubic)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.codi_serv }) |
+            @Html.ActionLink("Details", "Details", new { id=item.codi_serv }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.codi_serv })
+        </td>
+    </tr>
+}
+
+</table>

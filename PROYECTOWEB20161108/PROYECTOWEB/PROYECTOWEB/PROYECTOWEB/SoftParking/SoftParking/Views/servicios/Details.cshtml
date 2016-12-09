@@ -1,0 +1,66 @@
+﻿@model SoftParking.Models.servicio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fech_serv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fech_serv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hora_entr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hora_entr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hora_sali)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hora_sali)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empleado.nomb_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empleado.nomb_empl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vehiculo.colo_vehi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vehiculo.colo_vehi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ubicacion.tama_ubic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ubicacion.tama_ubic)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.codi_serv }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

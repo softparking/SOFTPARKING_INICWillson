@@ -1,0 +1,81 @@
+﻿@model SoftParking.Models.empleado
+
+@{
+    ViewBag.Title = "Eliminar";
+
+}
+
+<h2>ELIMINAR</h2>
+
+<h3>Estas seguro de eliminar usuario?</h3>
+<div>
+    <h4>empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.iden_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iden_empl, "IDENTIFICACION")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomb_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomb_empl,"NOMBRE")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apel_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apel_empl, "APELLIDO")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dire_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dire_empl,"DIRECCION")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usua_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usua_empl,"USUARIO")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cont_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cont_empl,"CONTRASEÑA")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carg_empl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carg_empl,"CARGO")
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

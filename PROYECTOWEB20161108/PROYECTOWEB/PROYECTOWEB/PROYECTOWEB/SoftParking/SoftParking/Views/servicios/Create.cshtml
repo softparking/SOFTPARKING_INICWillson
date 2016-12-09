@@ -1,0 +1,135 @@
+﻿@model SoftParking.Models.servicio
+@using SoftParking.Models
+@{
+    ViewBag.Title = "ASIGNAR SERVICIO";
+    var fecha = DateTime.Today.ToString("MM/dd/yyyy");
+    var hora = DateTime.Now.ToString("HH:mm:ss");
+    var vahias = ViewBag.vahias;
+    var disp = ViewBag.disponible;
+    var ocup = ViewBag.ocupado;
+    var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+
+
+<script>
+    //script generar hora dinamica 
+    function updateClock() {
+        var currentTime = new Date();
+        var currentHours = currentTime.getHours();
+        var currentMinutes = currentTime.getMinutes();
+        var currentSeconds = currentTime.getSeconds();
+        currentHours = (currentHours < 10 ? "0" : "") + currentHours;
+        currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+        currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+        var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
+
+
+        $("#hora").val(currentTimeString);
+
+    }
+    //update cloclk me actualiza la variable en  1 segundo 
+    $(document).ready(function () {
+        setInterval('updateClock()', 1000);
+    });
+</script>
+
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="jumbotron form-horizontal">
+        <div class="center-block">
+            <table class="table-bordered" style="margin: 0 auto;">
+                <tr class="text-center active">
+                    <th class="alert-success">
+                        ESPACIOS TOTALES
+                    </th>
+
+                    <th class="alert-success">
+                        ESPACIOS DISPONIBLES
+                    </th>
+
+                    <th class="alert-success">
+                        ESPACIOS OCUPADOS
+                    </th>
+                </tr>
+                <tr class="text-center">
+                    <th class="text-center">
+                        <input type="text" value="@vahias" disabled />
+                        @*@vahias*@
+                    </th>
+                    <th class="text-center">
+                        <input type="text" value="@disp" disabled />
+                        @*@vahias*@
+                    </th>
+
+                    <th class="text-center">
+                        <input type="text" value="@ocup" disabled />
+                        @*@vahias*@
+                    </th>
+
+                </tr>
+            </table>
+        </div><hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-6">
+
+            <label for="fechaserv">FECHA</label><br />
+            <div>
+                <input type="datetime-local" class="form-control"  name="fech_serv" style="font-size: 15pt;" value="@fecha" disabled />
+            </div><br />
+            <label for="fechaserv">TIPO DE VEHICULO</label><br />
+            <div>
+                @Html.DropDownList("tipo_vehi", null, htmlAttributes: new { @class = "form-control", @style = "float: left" })
+            </div><hr />
+
+
+            @*-----------------------------------------------------hhhhh-------------------------*@
+
+
+           
+
+            @*codigo de usuario*@
+            <input type="number" name="codi_empl" value="@USUARIO.UserID" hidden />
+
+            <label for="fechaserv">UBICACION</label><br />
+            <div>
+                @Html.DropDownList("codi_ubic", null, htmlAttributes: new { @class = "form-control", @style = "float: left" })
+
+            </div><br />
+
+
+        </div>@*termina la columna  con espacios de 6 posciciones*@
+
+        <div class="col-md-offset-6">
+            <label for="Mplac" id="placas" size="35">PLACA DEL VEHICULO</label><br />
+            <INPUT id=text1 style="WIDTH: 800px; HEIGHT: 100px; font-size: 50pt;text-transform:uppercase;background:yellow " name=text1 minlength="6" maxlength="6" required>
+        </div><br />
+        <div class="col-md-offset-6" id="Eldiv">
+            <label for="Mplac" id="numeros" size="35">HORA</label><br />
+            <INPUT class="text-center" id="hora" style="WIDTH: 800px; HEIGHT: 80px; font-size: 50pt;text-transform:uppercase " name="hora"  value="@hora">
+        </div><br />
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-6">
+                <button type="submit" class="btn btn-info" value="Create">Registrar Entrada</button>&nbsp;&nbsp;
+                <button type="submit" class="btn btn-info" value="Salida">Registrar Salida </button>
+
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

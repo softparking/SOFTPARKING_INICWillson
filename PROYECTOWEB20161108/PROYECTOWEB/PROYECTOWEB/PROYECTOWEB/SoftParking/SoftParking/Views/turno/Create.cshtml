@@ -1,0 +1,158 @@
+﻿
+@model SoftParking.Models.turno
+
+@using SoftParking.Models;
+
+@{
+    ViewBag.Title = "Create";
+    var obtnFecha = DateTime.Now.ToLocalTime();
+}
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript" src="~/Scripts/jquery-3.1.1.js"></script>
+
+
+@{ 
+
+    var USUARIO = Session["ControlUsuario"] as ControlUsuario;
+}
+@if (USUARIO != null)
+{
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-horizontal">
+            <h4 class="text-center text-capitalize">INICIAR TURNO</h4>
+            <hr/>
+
+            <h4 class="alert-success text-center">SELECCIONE  LAS CAJAS DIPONIBLES </h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="container-fluid">
+                @*inicio de la tabla*@
+
+                <table class="table table-bordered ">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            CAJAS
+                        </th>
+                        <th>
+                            ESTADO
+                        </th>
+                        <th>
+                            SELECCIONAR
+                        </th>
+
+                    </tr>
+                    <tbody>
+                        @{  /*este codido  Viewbag lo definimos como  un ienumerable para que  podamos recorrer la tabla es indispensable inicializarlo de esta forma
+  adicionalmente  en la opcion checkbox  debemos validar si la opcion esta  seleccionada  si no   nos mostrara un mensaje de alerta  para  ser seleccionado
+  */
+                            var obtenerLista = ViewBag.ListaCaja as IEnumerable<SoftParking.Models.caja>;
+                            if (obtenerLista != null)
+                            {
+                                foreach (var objeto in obtenerLista)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            <span>@objeto.codi_caja</span>
+                                        </td>
+                                        <td>
+                                            <span>@objeto.nomb_caja</span>
+                                        </td>
+                                        <td>
+
+                                            <span>@objeto.esta_caja</span>
+                                        </td>
+                                        <td>
+                                            <label><input type="checkbox" class="form-control" value="@objeto.codi_caja" name="codi_caja" ></label>
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+                        }
+                    </tbody>
+
+                </table>
+
+                @*@*fin de la tabla*@
+            </div>
+
+            <div class="jumbotron">
+
+                <div class="form-group">
+                    <div class="row col-md-4">
+                        <label for="Fech">FECHA</label>
+                        <input type="datetime-local" class="form-control" value="@obtnFecha" disabled /><br>
+                        <div style="display:none">
+                            <input type="datetime-local" class="form-control" value="@obtnFecha" name="fech_inic" hidden /><br>
+                        </div>
+
+                    </div>
+                    <div class="row col-md-5">
+                        <label for="usuar" class="alert-success">USUARIO :</label>
+                        <label for="usuar">@USUARIO.Usuario </label>
+                        <input type="text" class="form-control" value="@USUARIO.UserID" id="usuar" name="codi_empl"><br>
+                    </div>
+
+                </div>
+
+                <div class="form-group" hidden>
+                    @Html.LabelFor(model => model.fech_fina, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fech_fina, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fech_fina, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row col-md-8">
+                        <label for="monto">MONTO INICIAL</label>
+                        <div>
+                            <input type="number" name="mont_inic" id="miInput" required><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-lg-10">
+                    <label for="comentario">DESCRIPCION</label>
+                </div>
+                <div>
+                    <textarea class="form-control" rows="5" id="miInput" name="desc_turn"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" id="submit" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            <script>
+                $('form').submit(function (e) {
+                    // si la cantidad de checkboxes "chequeados" es cero,
+                    // entonces se evita que se envíe el formulario y se
+                    // muestra una alerta al usuario
+                    if ($('input[type=checkbox]:checked').length === 0) {
+                        e.preventDefault();
+                        alert('Debe seleccionar una caja ');
+                    }
+                });
+            </script>
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+                                }/*fin del html begin*/
+                            }/* fin  del la validacion usuario*/
+
+                            else
+                            {
+                                <h1> PAGINA NO DISPONIBLE</h1>
+
+
+                            }

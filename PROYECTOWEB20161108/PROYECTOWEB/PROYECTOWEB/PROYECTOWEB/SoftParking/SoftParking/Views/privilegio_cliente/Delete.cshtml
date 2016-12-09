@@ -1,0 +1,56 @@
+﻿@model SoftParking.Models.privilegio_cliente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>privilegio_cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_priv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_priv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tari_priv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tari_priv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.esta_priv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.esta_priv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fech_priv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fech_priv)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
